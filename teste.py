@@ -13,8 +13,14 @@ import traceback
 
 # --- Configuração ---
 # É recomendado carregar credenciais de variáveis de ambiente ou de um arquivo config
-USER_LOGIN = '93730241249'
-USER_PASSWORD = '283201581561K@s$ia' # Substitua pela sua senha
+# Carrega credenciais de um arquivo config.json
+config_path = os.path.join(os.getcwd(), "config.json")
+with open(config_path, "r", encoding="utf-8") as f:
+    config = json.load(f)
+USER_LOGIN = config.get("USER_LOGIN", "")
+USER_PASSWORD = config.get("USER_PASSWORD", "")
+USER_LOGIN = ''
+USER_PASSWORD = '' # Substitua pela sua senha
 BASE_URL = "https://pucgoiasgraduacao.grupoa.education/plataforma"
 is_logged_in = False
 
